@@ -5,7 +5,7 @@ import com.annaquizshow.testdependencyinjection.ProfileActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module()
+@Module
 abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = [FragmentModule::class])

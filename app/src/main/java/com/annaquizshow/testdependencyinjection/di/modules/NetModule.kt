@@ -1,7 +1,6 @@
 package com.annaquizshow.testdependencyinjection.di.modules
 
-import android.util.Log
-import com.annaquizshow.testdependencyinjection.network.interfaces.UserApiInterface
+import com.annaquizshow.testdependencyinjection.network.interfaces.UserDataSource
 import com.annaquizshow.testdependencyinjection.network.models.BaseUrlModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
@@ -43,8 +42,8 @@ class NetModule {
 
     @Singleton
     @Provides
-    fun providesUserApi(retrofit: Retrofit) : UserApiInterface {
-        return retrofit.create(UserApiInterface::class.java)
+    fun providesUserApi(retrofit: Retrofit) : UserDataSource {
+        return retrofit.create(UserDataSource::class.java)
     }
 
 }

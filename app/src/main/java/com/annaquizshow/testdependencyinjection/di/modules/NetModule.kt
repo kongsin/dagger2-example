@@ -42,7 +42,7 @@ class NetModule {
 
     @Singleton
     @Provides
-    fun providesUserApi(retrofit: Retrofit) : UserDataSource {
+    fun providesUserDataSource(retrofit: Retrofit) : UserDataSource {
         return retrofit.create(UserDataSource::class.java)
     }
 

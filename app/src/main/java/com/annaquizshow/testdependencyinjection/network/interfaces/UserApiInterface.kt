@@ -4,11 +4,10 @@ import com.annaquizshow.testdependencyinjection.flow.profile.model.CoreProfileIn
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface UserApiInterface {
 
-    @GET("/users/top-rank/follower")
-    fun getUserInfo(@Query("start") start: Int = 0, @Query("length") length: Int = 10) : Deferred<Response<CoreProfileInfo>>
+    @GET("/kongsin/dagger2-example/blob/master/data.json")
+    fun getUserInfo() : Deferred<Response<CoreProfileInfo>>
 
 }

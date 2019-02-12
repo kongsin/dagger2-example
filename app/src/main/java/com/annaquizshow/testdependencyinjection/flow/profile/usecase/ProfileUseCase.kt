@@ -14,7 +14,7 @@ class ProfileUseCase(var profileRepo: UserProfileRepo) : BaseUseCase() {
         return object : MutableLiveData<List<UserProfileModel>>() {
             override fun onActive() {
                 super.onActive()
-                GlobalScope.launch(Dispatchers.IO) {
+                io {
                     val res = profileRepo.getUserInfo().also {
                         deferreds.add(it)
                     }.await()
@@ -39,7 +39,7 @@ class ProfileUseCase(var profileRepo: UserProfileRepo) : BaseUseCase() {
         return object : MutableLiveData<List<UserProfileModel>>() {
             override fun onActive() {
                 super.onActive()
-                GlobalScope.launch(Dispatchers.IO) {
+                io {
                     val result = profileRepo.getUserInfo().also {
                         deferreds.add(it)
                     }.await()

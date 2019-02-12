@@ -1,13 +1,14 @@
 package com.annaquizshow.testdependencyinjection
 
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-abstract class BaseUseCase {
+abstract class BaseUseCase : CoroutineScope {
 
-    val deferreds = mutableListOf<Deferred<*>>()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
+
+    protected val deferreds = mutableListOf<Deferred<*>>()
 
     fun clear() {
         deferreds.onEach {
@@ -16,7 +17,11 @@ abstract class BaseUseCase {
         deferreds.clear()
     }
 
-    fun main(function : () -> Unit) = GlobalScope.launch(Dispatchers.Main) {
+    fun io(function : suspend () -> Unit) = launch(Dispatchers.IO) {
+        function.invoke()
+    }
+
+    fun main(function : suspend () -> Unit) = launch(Dispatchers.Main) {
         function.invoke()
     }
 }

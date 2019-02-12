@@ -1,6 +1,7 @@
 package com.annaquizshow.testdependencyinjection
 
 import kotlinx.coroutines.*
+import retrofit2.Response
 import kotlin.coroutines.CoroutineContext
 
 abstract class BaseUseCase : CoroutineScope {
@@ -17,7 +18,7 @@ abstract class BaseUseCase : CoroutineScope {
         deferreds.clear()
     }
 
-    fun io(function : suspend () -> Unit) = launch(Dispatchers.IO) {
+    fun io(function : suspend () -> Unit) = async(Dispatchers.IO) {
         function.invoke()
     }
 

@@ -1,5 +1,6 @@
 package com.annaquizshow.testdependencyinjection.flow.profile.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -7,16 +8,9 @@ import com.annaquizshow.testdependencyinjection.BaseActivity
 import com.annaquizshow.testdependencyinjection.R
 import com.annaquizshow.testdependencyinjection.UserProfileManager
 import com.annaquizshow.testdependencyinjection.extensions.argument
-import com.annaquizshow.testdependencyinjection.flow.profile.model.CoreProfileInfo
 import com.annaquizshow.testdependencyinjection.flow.profile.model.UserProfileModel
 import com.annaquizshow.testdependencyinjection.flow.profile.viewmodel.UserProfileViewModel
-import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.*
 import javax.inject.Inject
 
 class ProfileActivity : BaseActivity(), UserProfileInterface {
@@ -36,13 +30,14 @@ class ProfileActivity : BaseActivity(), UserProfileInterface {
 
     override fun onStart() {
         super.onStart()
-        profileViewModel.getUserProfile().observe(this@ProfileActivity, Observer<List<UserProfileModel>> {
-            onLoadProfileSuccess(it)
+        profileViewModel.getUserProfile().observe(this@ProfileActivity, Observer<List<UserProfileModel>> { info ->
+            onLoadProfileFinish(info)
         })
     }
 
-    override fun onLoadProfileSuccess(model: List<UserProfileModel>) {
-        text.text = "$model"
+    override fun onLoadProfileFinish(model: List<UserProfileModel>) {
+        text.text = "${model}"
+        text.setTextColor(Color.BLUE)
     }
 
     override fun onLoadProfileError(message: String) {

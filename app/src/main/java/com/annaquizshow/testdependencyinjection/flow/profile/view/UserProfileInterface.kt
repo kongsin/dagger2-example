@@ -5,9 +5,9 @@ import com.annaquizshow.testdependencyinjection.flow.profile.model.UserProfileMo
 
 interface UserProfileInterface : BaseView {
 
-    fun onLoadProfileSuccess(model: List<UserProfileModel>)
+    fun onLoadProfileFinish(model : List<UserProfileModel>)
+    fun onLoadProfileError(message: String)
     fun onShowLoading()
     fun onDismissLoading()
-    fun onLoadProfileError(message: String)
 
 }

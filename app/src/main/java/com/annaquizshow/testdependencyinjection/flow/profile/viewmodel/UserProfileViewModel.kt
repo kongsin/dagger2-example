@@ -9,15 +9,11 @@ import com.annaquizshow.testdependencyinjection.flow.profile.view.UserProfileInt
 class UserProfileViewModel(var userProfileUserCase: ProfileUseCase) : BaseViewModelAbstract<UserProfileInterface>() {
 
     fun getUserProfile() : MutableLiveData<List<UserProfileModel>> {
-        return userProfileUserCase.getProfile { error ->
-            view.onLoadProfileError(error)
-        }
+        return userProfileUserCase.getProfile()
     }
 
     fun getMemberNameStartWith(char: String) : MutableLiveData<List<UserProfileModel>> {
-        return userProfileUserCase.getMemberNameStartWith(char) { error ->
-            view.onLoadProfileError(error)
-        }
+        return userProfileUserCase.getMemberNameStartWith(char)
     }
 
     override fun stop() {

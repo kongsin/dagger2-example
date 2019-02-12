@@ -39,7 +39,7 @@ class NetModule {
 
     @Singleton
     @Provides
-    fun provideBaseUrl() = BaseUrlModel(baseUrlDev = "https://github.com", baseUrlProd = "https://github.com")
+    fun provideBaseUrl() = BaseUrlModel(baseUrlDev = "https://my-json-server.typicode.com", baseUrlProd = "https://my-json-server.typicode.com/")
 
     @Singleton
     @Provides

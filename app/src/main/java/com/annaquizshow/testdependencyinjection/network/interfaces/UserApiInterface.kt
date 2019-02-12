@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface UserApiInterface {
 
-    @GET("/kongsin/dagger2-example/blob/master/data.json")
+    @GET("/kongsin/dagger2-example")
     fun getUserInfo() : Deferred<Response<CoreProfileInfo>>
 
 }

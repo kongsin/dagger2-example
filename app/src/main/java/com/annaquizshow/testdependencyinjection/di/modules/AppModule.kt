@@ -14,24 +14,26 @@ class AppModule {
     fun provideUserManager(context: MyApplication) : UserProfileManager = UserProfileManager(context)
 
     @Provides
-    fun provideList() : Foo {
-        return Foo().apply {
-            this.lists = listOf(getSource(1),getSource(2),getSource(3))
+    fun provideList() = Foo().apply {
+        this.lists = listOf(getSource(1), getSource(2), getSource(3))
+    }
+
+    @Provides
+    fun provideListNumber() = listOf("1", "2", "3")
+
+    @Provides
+    fun getSource(v : Int) : Source<String> {
+        return object : Source<String> {
+
+            override fun nextT() = "Hello $v"
+
         }
     }
 
 }
 
-//Just example for real should move below code to separated class.
-fun getSource(v : Int) : Source<String> {
-    return object : Source<String> {
 
-        override fun nextT() = "Hello $v"
-
-    }
-}
-
-interface Source<out T> {
+interface Source<T> {
     fun nextT(): T
 }
 

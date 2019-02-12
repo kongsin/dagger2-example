@@ -1,10 +1,7 @@
 package com.annaquizshow.testdependencyinjection.di.components
 
 import com.annaquizshow.testdependencyinjection.MyApplication
-import com.annaquizshow.testdependencyinjection.di.modules.ActivityModule
-import com.annaquizshow.testdependencyinjection.di.modules.AppModule
-import com.annaquizshow.testdependencyinjection.di.modules.FragmentModule
-import com.annaquizshow.testdependencyinjection.di.modules.NetModule
+import com.annaquizshow.testdependencyinjection.di.modules.*
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -16,7 +13,8 @@ import javax.inject.Singleton
     AppModule::class,
     ActivityModule::class,
     FragmentModule::class,
-    NetModule::class
+    NetModule::class,
+    ProfileModule::class
 ])
 
 interface AppComponent : AndroidInjector<MyApplication>{

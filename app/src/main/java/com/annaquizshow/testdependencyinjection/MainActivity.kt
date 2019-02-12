@@ -1,8 +1,9 @@
 package com.annaquizshow.testdependencyinjection
 
+import android.content.Intent
 import android.os.Bundle
 import com.annaquizshow.testdependencyinjection.di.modules.Foo
-import com.annaquizshow.testdependencyinjection.di.modules.Source
+import com.annaquizshow.testdependencyinjection.flow.profile.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -22,7 +23,10 @@ class MainActivity : BaseActivity() {
         userManager.getUser()
 
         openProfileSettingFragment.setOnClickListener {
-            ProfileSettingFragment.newInstance().show(supportFragmentManager, "ProfileSettingFragment")
+            //ProfileSettingFragment.newInstance().show(supportFragmentManager, "ProfileSettingFragment")
+            startActivity(Intent(this, ProfileActivity::class.java).apply {
+                putExtra("NAME", "Kongsing")
+            })
         }
 
         foo.lists.onEach {

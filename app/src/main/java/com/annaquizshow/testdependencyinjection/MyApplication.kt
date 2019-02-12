@@ -12,7 +12,3 @@ class MyApplication : DaggerApplication() {
     }
 
 }
-
-inline fun <reified T> Activity.argument(key: String) : T? {
-    return this.intent.extras?.get(key) as T
-}

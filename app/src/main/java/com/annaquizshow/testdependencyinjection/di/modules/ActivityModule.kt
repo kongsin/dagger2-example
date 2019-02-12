@@ -1,7 +1,7 @@
 package com.annaquizshow.testdependencyinjection.di.modules
 
 import com.annaquizshow.testdependencyinjection.MainActivity
-import com.annaquizshow.testdependencyinjection.ProfileActivity
+import com.annaquizshow.testdependencyinjection.flow.profile.view.ProfileActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

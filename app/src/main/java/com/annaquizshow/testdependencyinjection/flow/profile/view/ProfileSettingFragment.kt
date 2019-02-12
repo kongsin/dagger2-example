@@ -1,10 +1,13 @@
-package com.annaquizshow.testdependencyinjection
+package com.annaquizshow.testdependencyinjection.flow.profile.view
 
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.annaquizshow.testdependencyinjection.BaseFragment
+import com.annaquizshow.testdependencyinjection.R
+import com.annaquizshow.testdependencyinjection.UserProfileManager
 import javax.inject.Inject
 
 class ProfileSettingFragment : BaseFragment() {

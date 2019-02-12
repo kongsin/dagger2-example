@@ -5,8 +5,8 @@ import android.util.Log
 
 class UserProfileManager(val context: Context) {
 
-    private var name : String = ""
-    private var age : Int = 0
+    var name : String = ""
+    var age : Int = 0
 
     fun saveUser(name: String = "", age: Int = 0) {
         this.name = name

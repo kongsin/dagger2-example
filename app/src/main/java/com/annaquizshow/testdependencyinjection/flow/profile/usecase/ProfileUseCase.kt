@@ -15,7 +15,7 @@ class ProfileUseCase(var profileRepo: UserProfileRepo) : BaseUseCase() {
         loadProfile { res ->
             when(res) {
                 is ResponseWraper.Success -> {
-                    profileByNameData.value = res.info
+                    profileData.postValue(res.info)
                 }
             }
         }
@@ -27,7 +27,7 @@ class ProfileUseCase(var profileRepo: UserProfileRepo) : BaseUseCase() {
             when(res) {
                 is ResponseWraper.Success -> {
                     res.info.filter { it.displayName.toLowerCase().startsWith(firstChar) }.also {
-                        profileByNameData.value = it
+                        profileByNameData.postValue(it)
                     }
                 }
             }
@@ -35,20 +35,19 @@ class ProfileUseCase(var profileRepo: UserProfileRepo) : BaseUseCase() {
         return profileByNameData
     }
 
-    private fun loadProfile(responseWraper: (ResponseWraper<List<UserProfileModel>>) -> Unit) {
+    private fun loadProfile(callback: (ResponseWraper<List<UserProfileModel>>) -> Unit) {
         result {
             main {
                 val result = call { profileRepo.getUserInfo() }.await()
                 when {
                     result.isSuccessful -> {
-                        responseWraper.invoke(ResponseWraper.Success(result.body()?.data?.items ?: emptyList()))
+                        callback.invoke(ResponseWraper.Success(result.body()?.data?.items ?: emptyList()))
                     }
                     else -> {
-                        responseWraper.invoke(ResponseWraper.Error(result.errorBody()?.string() ?: "Unknown error"))
+                        callback.invoke(ResponseWraper.Error(result.errorBody()?.string() ?: "Unknown error"))
                     }
                 }
-            }
-            ResponseWraper.Success(true)
+            }.let { ResponseWraper.Success(true) }
         }
     }
 

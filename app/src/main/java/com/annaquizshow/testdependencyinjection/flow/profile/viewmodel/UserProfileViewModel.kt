@@ -8,6 +8,7 @@ import com.annaquizshow.testdependencyinjection.flow.profile.view.UserProfileInt
 
 class UserProfileViewModel(var userProfileUserCase: ProfileUseCase) : BaseViewModelAbstract<UserProfileInterface>() {
 
+
     fun getUserProfile() : MutableLiveData<List<UserProfileModel>> {
         return userProfileUserCase.getProfile()
     }

@@ -2,7 +2,6 @@ package com.annaquizshow.testdependencyinjection
 
 import android.content.Intent
 import android.os.Bundle
-import com.annaquizshow.testdependencyinjection.di.modules.Foo
 import com.annaquizshow.testdependencyinjection.flow.profile.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -11,9 +10,6 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var userManager: UserProfileManager
-
-    @Inject
-    lateinit var foo: Foo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +23,6 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this, ProfileActivity::class.java).apply {
                 putExtra("NAME", "Kongsing")
             })
-        }
-
-        foo.lists.onEach {
-            text.text = text.text.toString() + it.nextT()
         }
 
     }

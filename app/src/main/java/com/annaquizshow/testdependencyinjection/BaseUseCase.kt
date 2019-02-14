@@ -16,8 +16,7 @@ abstract class BaseUseCase : CoroutineScope {
     fun clear() {
         deferreds.onEach {
             if (!it.isCancelled) it.cancel()
-        }
-        deferreds.clear()
+        }.clear()
     }
 
     fun <T>call(job: () -> Deferred<T>) : Deferred<T> {
